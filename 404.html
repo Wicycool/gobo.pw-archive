@@ -2,6 +2,10 @@
 <html>
     <head>
         <title>gobo.pw</title>
+        <meta property="og:title" content="gobo.pw">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://gobo.pw/gobo.png">
+        <meta property="og:description" content="Shorten Scratch project, studio, user, and forum links!">
         <script>
             //CHANGE TO window.location.pathname
             var urlPath = window.location.pathname;
@@ -11,16 +15,19 @@
             var redirectURL
             var redirectID
 
-            if (shortLinkType == "/u/"){
+            if (shortLinkType == "/u/"){ //user
                 redirectURL = "https://scratch.mit.edu/users/"
                 redirectID = urlPath.substr(3);
-            } else if (shortLinkType == "/s/"){
+            } else if (shortLinkType == "/s/"){ //studio
                 redirectURL = "https://scratch.mit.edu/studios/"
                 redirectID = urlPath.substr(3);
-            } else if (shortLinkType == "/d/"){
+            } else if (shortLinkType == "/d/"){ //discuss
                 redirectURL = "https://scratch.mit.edu/discuss/topic/"
                 redirectID = urlPath.substr(3);
-            } else {
+            } else if (shortLinkType == "/p/"){ //project download
+                redirectURL = "https://projects.scratch.mit.edu/"
+                redirectID = urlPath.substr(3);
+            } else { //project
                 redirectURL = "https://scratch.mit.edu/projects/"
                 redirectID = urlPath.substr(1);
             }

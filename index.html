@@ -4,6 +4,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>gobo.pw</title>
         <link rel="icon" href="favicon.ico">
+        <meta property="og:title" content="gobo.pw">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://gobo.pw/gobo.png">
+        <meta property="og:description" content="Shorten Scratch project, studio, user, and forum links!">
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans&display=swap');
             body{
@@ -134,6 +138,10 @@
                         showShortenedLink()
                     } else if (urlType == "users/"){
                         outputURL = outputURL + "u/" + urlID;
+                        document.getElementById('link-output-box').value = outputURL;
+                        showShortenedLink()
+                    } else if (urlType == "download/"){
+                        outputURL = outputURL + "p/" + urlID;
                         document.getElementById('link-output-box').value = outputURL;
                         showShortenedLink()
                     } else if (urlType == "discuss/"){
