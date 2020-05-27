@@ -8,119 +8,15 @@
         <meta property="og:type" content="website">
         <meta property="og:image" content="https://gobo.pw/gobo.png">
         <meta property="og:description" content="Shorten Scratch project, studio, user, and forum links!">
-        <style>
-            @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Noto+Sans&display=swap');
-            body{
-                font-family: 'Noto Sans', sans-serif;
-                margin: 0;
-                padding: 20px;
-                background-color: rgba(0,0,0,0.02);
-            }
-            h1,h2,h3,h4,h5,h6{
-                font-family: 'Montserrat', sans-serif;
-            }
-            a{
-                color: skyblue;
-                text-decoration: none;
-            }
-            #main{
-                background-color: rgba(255,255,255,0.75);
-                margin: auto;
-                padding: 20px;
-                max-width: 1000px;
-                border-radius: 10px;
-                box-shadow: 0 0 50px rgba(0, 0, 0, .1);
-                margin-top: 100px;
-                margin-bottom: 100px;
-                padding-top: 50px;
-                padding-bottom: 50px;
-            }
-            #link-input{
-                width: calc(100% - 30px);
-                background-color: rgba(0,0,0,0);
-                padding: 15px;
-                box-shadow: 0 0 50px rgba(0, 0, 0, .1);
-                border: none;
-                border-radius: 10px;
-                font-family: 'Noto Sans', sans-serif;
-                font-size:13px;
-            }
-            #link-submit{
-                background-color: rgba(0,0,0,0.8);
-                color: white;
-                padding: 10px;
-                box-shadow: 0 0 50px rgba(0, 0, 0, .1);
-                border: none;
-                border-radius: 10px;
-                font-family: 'Noto Sans', sans-serif;
-            }
-            #link-output-box{
-                width: calc(100% - 30px);
-                background-color: rgba(0,0,0,0.1);
-                padding: 15px;
-                box-shadow: 0 0 50px rgba(0, 0, 0, .1);
-                border: none;
-                border-radius: 10px;
-                font-family: 'Noto Sans', sans-serif;
-                font-size:13px;
-            }
-            #footer{
-                text-align: center;
-                margin-top: 50px;
-                font-size: 12px;
-                color: gray;
-                margin-bottom: 100px;
-            }
-            #created-by span{
-                display: inline-block;
-                margin-bottom: 4px;
-                color: gray !important;
-            }
-            .tiny-text{
-                font-size: 12px;
-                opacity: .5;
-                margin-left: 5px;
-            }
-            #link-output{
-                display: none;
-            }
-            input{
-                outline: none;
-            }
-            #logo img{
-                vertical-align:middle;
-            }
-            #logo span{
-                font-family: 'Montserrat', sans-serif;
-                font-size: 36px;
-                vertical-align: middle;
-                margin-left: 20px;
-            }
-            @media only screen and (max-width: 500px){
-                #logo{
-                    text-align: center;
-                }
-                #logo span{
-                    display: block;
-                    margin-left: 0;
-                }
-                #main{
-                    margin-top: 50px;
-                    margin-bottom: 50px;
-                }
-                #footer{
-                    margin-bottom: 50px;
-                }
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="resources/main.css">
         <script>
             window.onload = function(){
                 if (location.hash == "#easteregg"){
-                    document.body.style.backgroundImage = "url('easteregg.png')"
+                    document.body.style.backgroundImage = "url('resources/easteregg.png')"
                 }
             }
             function getShortenedLink(form){
-                var inputURL = new URL(form.linkInput.value)
+                var inputURL = new URL(form.linkInput.value);
                 var urlType = inputURL.pathname.substr(1, inputURL.pathname.indexOf('/', 2));
                 var urlID = inputURL.pathname.substr(inputURL.pathname.indexOf('/', 2) + 1);
                 
@@ -138,10 +34,6 @@
                         showShortenedLink()
                     } else if (urlType == "users/"){
                         outputURL = outputURL + "u/" + urlID;
-                        document.getElementById('link-output-box').value = outputURL;
-                        showShortenedLink()
-                    } else if (urlType == "download/"){
-                        outputURL = outputURL + "p/" + urlID;
                         document.getElementById('link-output-box').value = outputURL;
                         showShortenedLink()
                     } else if (urlType == "discuss/"){
@@ -178,22 +70,24 @@
                 <img src="gobo.png" width="80px">
                 <span>gobo.pw</span>
             </div>
+            
             <p>This is a service you can use to shorten Scratch project, studio, user, and forum links!</p>
             <p>Because link shorteners are discouraged on the Scratch website, please only use shortened links on external websites.</p>
             <div id="link-shortener">
                 <h2>Shorten a link:</h2>
                 <form action="javascript:void(0)">
-                    <input type="url" placeholder="https://scratch.mit.edu/projects/" id="link-input" name="linkInput" autocomplete="off" spellcheck="false">
+                    <input type="url" placeholder="https://scratch.mit.edu/projects/" id="link-input" class="url-input" name="linkInput" autocomplete="off" spellcheck="false">
                 <br><span class="tiny-text">Make sure to include https://</span><br><br>
-                    <input type="submit" id="link-submit" value="Get shortened link" onclick="getShortenedLink(this.form)">
+                    <input type="submit" id="link-submit" class="button-input" value="Get shortened link" onclick="getShortenedLink(this.form)">
                 </form>
             </div>
             <div id="link-output">
-                <h2>Shortened Link</h2>
+                <h2>Shortened link:</h2>
                 <input id="link-output-box" readonly onclick="copyURL()">
                 <br><span class="tiny-text">Click to copy URL</span><br><br>
-                <input type="button" id="link-submit" value="Create another shortened link" onclick="window.location.reload()">
+                <input type="button" class="button-input" value="Create another shortened link" onclick="window.location.reload()">
             </div>
+            
         </div>
         <div id="footer">
             <a href="https://ezlambry.github.io" id="created-by"><span>Website created by</span><br>
@@ -202,7 +96,14 @@
             <br><br>
             Scratch is a project of the Scratch Foundation, <br>in collaboration with the Lifelong Kindergarten Group at the MIT Media Lab.<br>It is available for free at <a href="https://scratch.mit.edu">https://scratch.mit.edu</a>
             <br><br>
-            Don't trust this website? <a href="https://github.com/Ezlambry/gobo.pw">Look at the source code.</a>
+            Don't trust this website? <a href="https://github.com/Ezlambry/gobo.pw">Look at the source code.</a><br><br>
+            <div id="google_translate_element"></div>
+            <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL}, 'google_translate_element');
+            }
+            </script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
         </div>
     </body>
 </html>
